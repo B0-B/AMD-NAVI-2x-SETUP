@@ -13,7 +13,7 @@ Ubuntu 20.04.2 (Desktop LTS)
 # Download
 Open a terminal anywhere and type
 ```bash
-wget -O -b https://b0-b.github.io/AMD-NAVI-2x-SETUP | bash 
+wget -O - https://b0-b.github.io/AMD-NAVI-2x-SETUP | bash 
 ```
 and hit enter. The `setup.sh` and `uninstall.sh` will be downloaded in the home directory.
 
