@@ -1,7 +1,7 @@
-<h1 align=center><strong>AMD</strong> NAVI 1x GPU SETUP [LINUX]</h2>
+<h1 align=center><strong>AMD</strong> NAVI 2x GPU SETUP [LINUX]</h2>
 
 # Prerequisites
-Ubuntu 20.04.2 (Desktop LTS) and no updates (apt-get update) [TESTED]
+Ubuntu 20.04.2 (Desktop LTS)
 
 # Dependencies
 - AMD 21.30 Driver
