@@ -1,5 +1,8 @@
 <h1 align=center><strong>AMD</strong> NAVI 2x GPU SETUP [LINUX]</h2>
 
+This setup is still in development. For now it is considered to run with single GPUs only.
+Supports all Navi21, Navi22, Navi23 asics.
+
 # Prerequisites
 Ubuntu 20.04.2 (Desktop LTS)
 
@@ -10,7 +13,7 @@ Ubuntu 20.04.2 (Desktop LTS)
 # Download
 Open a terminal anywhere and type
 ```bash
-~$ wget -O - https://b0-b.github.io/amd-driver/pull.sh | bash 
+wget -O - https://b0-b.github.io/AMD-NAVI-2x-SETUP/pull.sh | bash 
 ```
 and hit enter. The `setup.sh` and `uninstall.sh` will be downloaded in the home directory.
 
@@ -19,8 +22,8 @@ and hit enter. The `setup.sh` and `uninstall.sh` will be downloaded in the home 
 ### 1. Run setup
 Go into your home directory and run the setup
 ```bash
-~$ cd $HOME
-~$ /bin/bash setup.sh
+cd $HOME
+/bin/bash setup.sh
 ```
 The script will ask for a password at the beginning and for a reboot when finished.
 Please reboot your system.
@@ -29,22 +32,16 @@ Please reboot your system.
 Go into the generated overdrive.sh script in the miner directory 
 
 ```bash
-cd $HOME/miner/teamredminer-v0.8.3-linux/
+cd $HOME/miner/teamredminer-v0.8.5-linux/
 ```
 
-When multiple GPUs are utilized on a single mainboard (MB), the MB dependend PCI IDs need to be determined to set MCLK and GFX voltages clocks correctly and allow maximum memory allocation (before mining workload).
 To find these use the `card_from_pci.sh` script in the same directory, by trying HEX numbers starting from 0.
 ```bash
 /bin/bash card_from_pci.sh "0"
 0   # <-- If a 0 is returned a card was found at PCI slot 0
-/bin/bash card_from_pci.sh "1"
-0   # second card was found at slot 1
-/bin/bash card_from_pci.sh "2"
-ERROR ... # no card found at slot 2!
 ```
 
-
-Once all cards are found please override the gpu call in overdrive.sh
+Once found please override the gpu call in overdrive.sh
 ```bash
 ...
 function gpu () {
@@ -58,7 +55,7 @@ echo "vc 2 1600 900" > /sys/class/drm/card$C/device/pp_od_clk_voltage
 echo "c" > /sys/class/drm/card$C/device/pp_od_clk_voltage
 cat /sys/class/drm/card$C/device/pp_od_clk_voltage
 }
-gpu "03" & gpu "06" & ... # <-- override this line to gpu "0" & gpu "1" or any other PCI slots found
+gpu "0"  # <-- override this line to your gpu ID in this case "0" 
 ```
 
 ```bash
