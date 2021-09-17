@@ -46,7 +46,6 @@ else
     highlight 'done.\n'
 fi
 
-
 # -- check for miner install --
 if [ -d "$dir/miner" ]; then
 	highlight "Miner directory was found at $dir/miner"
@@ -110,11 +109,14 @@ highlight "Make both .sh files executable ..."
 sudo chmod +x $dir/miner/teamredminer-v0.8.5-linux/card_from_pci.sh
 sudo chmod +x $dir/miner/teamredminer-v0.8.5-linux/overdrive.sh
 sudo chmod +x $dir/miner/teamredminer-v0.8.5-linux/detatch.sh
+highlight "done.\n"
 
 wait
 
 
 # -- output ssh info --
+highlight "setup ssh connection ..."
+sudo apt install ssh -y
 highlight "SSH: Machine will be accessable under $usr@$(hostname)"
 
 
