@@ -32,7 +32,7 @@ else
     cd $dir && mkdir driver && cd driver &&
     wget https://drivers.amd.com/drivers/linux/amdgpu-pro-21.30-1290604-ubuntu-20.04.tar.xz --referer https://support.amd.com &&
     tar -Jxvf amdgpu-pro-21.30-1290604-ubuntu-20.04.tar.xz && cd amdgpu-pro-21.30-1290604-ubuntu-20.04 &&
-    sudo ./amdgpu-install -y --no-dkms --opencl=pal --headless
+    sudo ./amdgpu-install -y --no-dkms --opencl=rocr
     highlight 'done.\n'
 
     highlight 'Install dkms firmware ...'
