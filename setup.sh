@@ -36,7 +36,7 @@ else
     highlight 'done.\n'
 
     highlight 'Install dkms firmware ...'
-    sudo apt install ./amdgpu-dkms_5.11.19.98-1290604_all.deb ./amdgpu-dkms-firmware_5.11.19.98-1290604_all.deb &&
+    sudo apt install -y ./amdgpu-dkms_5.11.19.98-1290604_all.deb ./amdgpu-dkms-firmware_5.11.19.98-1290604_all.deb &&
     cd $dir/driver &&
     highlight 'done.\n'
 
