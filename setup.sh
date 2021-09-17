@@ -12,6 +12,20 @@ declare usr="$(whoami)"
 # -- show info -- 
 highlight "install path: $dir\n\tcurrent user: $usr"
 
+
+highlight "check for clinfo ..."
+REQUIRED_PKG="some-package"
+PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $REQUIRED_PKG|grep "install ok installed")
+if [ "" = "$PKG_OK" ]; then
+  highlight "No clinfo found. Install ..."
+  sudo apt install clinfo -y || sudo apt --broken-fix install -y && sudo apt install clinfo -y 
+else
+    highlight "$REQUIRED_PKG installed."
+fi
+highlight "done.\n"
+
+
+
 if [ -d "$dir/driver" ]; then
 	highlight "Driver directory was found at $dir/driver"
 else
