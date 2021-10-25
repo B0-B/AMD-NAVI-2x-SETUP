@@ -53,8 +53,8 @@ else
 	highlight "Download Miner ..."
 	mkdir $dir/miner && 
 	cd $dir/miner &&
-	wget https://github.com/todxx/teamredminer/releases/download/v0.8.5/teamredminer-v0.8.5-linux.tgz --referer https://github.com &&
-	tar -xvf teamredminer-v0.8.5-linux.tgz &&
+	wget https://github.com/todxx/teamredminer/releases/download/v0.8.6.2/teamredminer-v0.8.6.2-linux.tgz --referer https://github.com &&
+	tar -xvf teamredminer-v0.8.6.2-linux.tgz &&
 	cd $dir
 fi
 
@@ -63,7 +63,7 @@ wait
 
 
 # -- add the overdrive and pci scripts to miner directory --
-highlight "Inject $dir/miner/teamredminer-v0.8.5-linux/overdrive.sh ..."
+highlight "Inject $dir/miner/teamredminer-v0.8.6.2-linux/overdrive.sh ..."
 echo '#!/bin/bash
 # -- WALLET --
 declare wallet="YOUR WALLET ADDRESS HERE"
@@ -82,8 +82,8 @@ cat /sys/class/drm/card$C/device/pp_od_clk_voltage
 }
 gpu "03" & gpu "06" & gpu "09" & gpu "0c" & gpu "0f" & gpu "13" & gpu "16" & gpu "19" & gpu "1c" & gpu "1f" & gpu "22" & gpu "25" &&
 wait
-./teamredminer -a ethash -o stratum+tcp://eu1.ethermine.org:4444 -u $wallet.$workerName -p x' >> $dir/miner/teamredminer-v0.8.5-linux/overdrive.sh &&
-highlight "Inject $dir/miner/teamredminer-v0.8.5-linux/card_from_pci.sh ..."
+./teamredminer -a ethash -o stratum+tcp://eu1.ethermine.org:4444 -u $wallet.$workerName -p x' >> $dir/miner/teamredminer-v0.8.6.2-linux/overdrive.sh &&
+highlight "Inject $dir/miner/teamredminer-v0.8.6.2-linux/card_from_pci.sh ..."
 echo '#!/bin/bash
 cd `dirname $0`
 if [ $# -ne 1 ]
@@ -99,16 +99,16 @@ fi
 DEVDIR=`dirname $P`
 CARD=`echo $DEVDIR | cut -f 5 -d / | sed "s/[^0-9]//g"`
     echo $CARD
-' >> $dir/miner/teamredminer-v0.8.5-linux/card_from_pci.sh
-highlight "Inject $dir/miner/teamredminer-v0.8.5-linux/detatch.sh ..."
+' >> $dir/miner/teamredminer-v0.8.6.2-linux/card_from_pci.sh
+highlight "Inject $dir/miner/teamredminer-v0.8.6.2-linux/detatch.sh ..."
 echo '#!/bin/bash
 setsid -f bash overdrive.sh > /dev/null 2>&1
-echo "Team Red Miner will start soon, you may close this shell now."' >> $dir/miner/teamredminer-v0.8.5-linux/detatch.sh
+echo "Team Red Miner will start soon, you may close this shell now."' >> $dir/miner/teamredminer-v0.8.6.2-linux/detatch.sh
 # and finally make both scripts executable
 highlight "Make both .sh files executable ..."
-sudo chmod +x $dir/miner/teamredminer-v0.8.5-linux/card_from_pci.sh
-sudo chmod +x $dir/miner/teamredminer-v0.8.5-linux/overdrive.sh
-sudo chmod +x $dir/miner/teamredminer-v0.8.5-linux/detatch.sh
+sudo chmod +x $dir/miner/teamredminer-v0.8.6.2-linux/card_from_pci.sh
+sudo chmod +x $dir/miner/teamredminer-v0.8.6.2-linux/overdrive.sh
+sudo chmod +x $dir/miner/teamredminer-v0.8.6.2-linux/detatch.sh
 highlight "done.\n"
 
 wait
